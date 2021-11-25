@@ -1,23 +1,19 @@
 #!/usr/local/bin/python3
 
 from flask import Flask
-from modules.ipaddress import getIpAddress
-from modules.timestamp import getCurrentTimestamp
-from db.cosmosConnect import addItem
-import socket
+from modules.pythonAddy import pythonAddy, visitorFirstTime
+from modules.visitor import getHostname
 
 app = Flask(__name__)
 
 @app.route("/")
 def home():
-    ipAddress = getIpAddress()
-    currentTimeStamp = getCurrentTimestamp()
-    addItem()
-    return "Hello, IP: " + ipAddress + ", Timestamp: " + currentTimeStamp
+    #return str(visitorFirstTime())
+    return pythonAddy()
 
 @app.route("/hostname")
 def hostname():
-    return socket.gethostname()
+    return getHostname()
     
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=80)
