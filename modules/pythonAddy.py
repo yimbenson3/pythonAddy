@@ -31,7 +31,7 @@ def pythonAddy():
         # Add item into CosmosDB
         addItemIntoCosmos(item)
 
-        return "Hello, IP: " + ipAddress + ", Time of visit: " + currentTimeStamp + ", Browser: " + browserInfo
+        return "Welcome, IP: " + ipAddress + ", Time of visit: " + currentTimeStamp + ", Browser: " + browserInfo
 
     else:
         item = queryIpAddress(getIpAddress())
@@ -43,4 +43,4 @@ def pythonAddy():
         # Replace item in CosmosDB
         replaceItemInCosmos(readItem)
 
-        return "Hello again, IP: " + ipAddress + ", First Visit at: " + str(firstVisitTime) + ", Browser: " + browserInfo
+        return "Hello again, IP: " + ipAddress + ", Visit Count: " + str(readItem['counter']) + ", Browser: " + browserInfo
