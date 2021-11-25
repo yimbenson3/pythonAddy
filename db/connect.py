@@ -4,8 +4,8 @@ from azure.cosmos import exceptions, CosmosClient, PartitionKey
 def cosmosClient():
     # Initialize the Cosmos client
     # Need to secure the below endpoint and key!
-    endpoint = "https://barry-azure-cosmo-account.documents.azure.com:443/"
-    key = 'jvMbkdOpS60FsYe1ps89DeMcumBihLQ3NFe8MGIyy24oc3szryAassUYcys2wFrKGTz8KgIc2X9r6Ul4x853yg=='
+    endpoint = endpoint
+    key = key
     #key = getKey('cosmosDbKey')
 
     client = CosmosClient(endpoint, key)
