@@ -4,18 +4,16 @@ from flask import Flask, render_template
 from flask.helpers import make_response
 from modules.pythonAddy import pythonAddy
 from modules.visitor import getHostname
+import json
 
 app = Flask(__name__, template_folder='templates/', static_folder='statics/')
 
 @app.route("/")
 def home():
-    #item = pythonAddy()
-    #return render_template('index.html', item=item)
-    return pythonAddy()
-
-@app.route("/hostname")
-def hostname():
-    return getHostname()
+    hostname = getHostname()
+    item = pythonAddy()
+    item['_etag'] = 0
+    return render_template('index.html', item=item, hostname=hostname)
 
 @app.route('/cookie')
 def index():
