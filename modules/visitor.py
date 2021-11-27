@@ -18,7 +18,11 @@ def getIpAddress():
         return request.environ['HTTP_X_FORWARDED_FOR']
 
 def getUserAgent():
-    return request.environ['HTTP_USER_AGENT']
+    try:
+        userAgent = request.environ['HTTP_USER_AGENT']
+        return userAgent
+    except KeyError:
+        return "None"
 
 def getCurrentTimestamp():
     return str(datetime.now(timezone.utc))
