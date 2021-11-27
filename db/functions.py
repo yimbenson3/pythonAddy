@@ -1,12 +1,21 @@
 from db.connect import cosmosClient
+from db.sendEmail import emailSendGrid
 
 container = cosmosClient()
 
 def queryTopRow(id_name, id):
     return "SELECT TOP 1 * FROM c WHERE c." + id_name + " IN ('" + id + "')"
 
+def readChangeFeed(container):
+    response = container.query_items_change_feed()
+    docList = []
+    for doc in response:
+        docList.append(doc)
+    emailSendGrid(docList[-1])
+
 def addItemIntoCosmos(item):
     container.create_item(body=item)
+    readChangeFeed(container)
 
 def queryUniqueFromId(id_name, id):
     query = queryTopRow(id_name, id)

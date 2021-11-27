@@ -1,6 +1,6 @@
 from azure.cosmos import exceptions, CosmosClient, PartitionKey
+from db.keyVault import getKey
 import yaml
-#from db.keyVault import getKey
 
 def cosmosClient():
     with open("db/dbConfig.yml","r") as file:
@@ -12,8 +12,7 @@ def cosmosClient():
     # Initialize the Cosmos client
     # Need to secure the below endpoint and key!
     endpoint = config['db']['cosmos']['endpoint']
-    key = key
-    #key = getKey('cosmosDbKey')
+    key = getKey('cosmosDbKey')
 
     client = CosmosClient(endpoint, key)
 

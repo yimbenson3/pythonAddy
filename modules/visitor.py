@@ -1,13 +1,14 @@
 from flask import request
 from datetime import datetime, timezone
+import os
 import socket
-import re
 
 def getHostname():
-    socketHostName = socket.gethostname()
-    if re.match(r"^[0-9]", socketHostName):
-        return socket.gethostbyaddr(socket.gethostname())[0]
-    return socketHostName
+    if 'HOST_HOSTNAME' in os.environ:
+        host_hostname = os.environ.get('HOST_HOSTNAME')
+        return host_hostname
+    else:
+        return socket.gethostname()
 
 def getIpAddress():
     if request.environ.get('HTTP_X_FORWARDED_FOR') is None:
