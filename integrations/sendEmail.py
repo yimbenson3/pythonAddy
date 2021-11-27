@@ -17,7 +17,7 @@ def emailSendGrid(data):
         '</strong><br> Time of Visit: <strong>' + data['firstVisit'] +
         '</strong><br> Browser: ' + data['browserInfo'])
     try:
-        sg = SendGridAPIClient('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')
+        sg = SendGridAPIClient()
         response = sg.send(message)
         logging.info('Sending Email to: ' + str(config['sendGrid']['to_emails']) + '|| Status: '+str(response.status_code))
     except Exception as e:

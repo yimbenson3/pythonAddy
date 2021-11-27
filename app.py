@@ -12,13 +12,11 @@ def home():
     hostname = getHostname()
     item = main()
     item['_etag'] = 0
-    return render_template('index.html', item=item, hostname=hostname)
 
-@app.route('/cookie')
-def index():
-    response = make_response("Setting Visit Count Cookie")
-    response.set_cookie( "Visit", "1" )
-    return response
-    
+    #response = make_response(redirect_)
+    #response.set_cookie( "Visit", "1" )
+
+    return render_template('index.html', item=item, hostname=hostname)
+   
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=80)
