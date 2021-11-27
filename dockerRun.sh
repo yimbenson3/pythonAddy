@@ -5,7 +5,7 @@ echo "****** Setting docker container name as ${CONTAINER_NAME} ******"
 
 IMAGE_NAME=${CONTAINER_NAME}:dev
 echo "****** Set docker image name as ${IMAGE_NAME} ******"
-PORT=5000
+PORT=80
 echo "****** Set docker image PORT to ${PORT} ******"
 
 echo "****** Stop running Docker containers with image tag ${CONTAINER_NAME}, and remove them ******"

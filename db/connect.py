@@ -12,7 +12,8 @@ def cosmosClient():
     # Initialize the Cosmos client
     # Need to secure the below endpoint and key!
     endpoint = config['db']['cosmos']['endpoint']
-    key = getKey('cosmosDbKey')
+    key = key
+    #key = getKey('cosmosDbKey')
 
     client = CosmosClient(endpoint, key)
 
