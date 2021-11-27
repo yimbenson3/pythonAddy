@@ -1,18 +1,15 @@
 from azure.cosmos import exceptions, CosmosClient, PartitionKey
-from db.keyVault import getKey
-import yaml
+from integrations.keyVault import getKey
+from config.loadConfig import *
 
 def cosmosClient():
-    with open("db/dbConfig.yml","r") as file:
-        try:
-            config = yaml.safe_load(file)
-        except yaml.YAMLError as exc:
-            print(exc)
+
+    config = loadConfigurations()
 
     # Initialize the Cosmos client
     # Need to secure the below endpoint and key!
     endpoint = config['db']['cosmos']['endpoint']
-    key = key
+    key = 'jvMbkdOpS60FsYe1ps89DeMcumBihLQ3NFe8MGIyy24oc3szryAassUYcys2wFrKGTz8KgIc2X9r6Ul4x853yg=='
     #key = getKey('cosmosDbKey')
 
     client = CosmosClient(endpoint, key)

@@ -1,5 +1,5 @@
-from modules.visitor import *
-from db.functions import *
+from modules.visitorFunctions import *
+from integrations.cosmosFunctions import *
 import uuid
 
 
@@ -9,7 +9,7 @@ def jsonItem():
     item['id'] = str(id)
     return item
 
-def pythonAddy():
+def main():
     ipAddress = getIpAddress()
     currentTimeStamp = getCurrentTimestamp()
     browserInfo = getUserAgent()

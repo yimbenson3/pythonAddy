@@ -8,3 +8,9 @@ db:
       'container3'
     partitionKey:
       '/ipAddress'
+
+sendGrid:
+  from_email:
+    'bbarryyim@gmail.com'
+  to_emails:
+    'yimpact123@gmail.com'

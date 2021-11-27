@@ -2,16 +2,15 @@
 
 from flask import Flask, render_template
 from flask.helpers import make_response
-from modules.pythonAddy import pythonAddy
-from modules.visitor import getHostname
-import json
+from modules.main import main
+from modules.visitorFunctions import getHostname
 
 app = Flask(__name__, template_folder='templates/', static_folder='statics/')
 
 @app.route("/")
 def home():
     hostname = getHostname()
-    item = pythonAddy()
+    item = main()
     item['_etag'] = 0
     return render_template('index.html', item=item, hostname=hostname)
 

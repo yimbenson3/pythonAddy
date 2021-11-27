@@ -1,5 +1,5 @@
-from db.connect import cosmosClient
-from db.sendEmail import emailSendGrid
+from integrations.cosmosClient import cosmosClient
+from integrations.sendEmail import *
 import logging
 
 container = cosmosClient()
