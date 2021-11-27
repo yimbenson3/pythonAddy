@@ -1,20 +1,19 @@
 from azure.cosmos import exceptions, CosmosClient, PartitionKey
-from integrations.keyVault import getKey
+from dotenv import load_dotenv
 from config.loadConfig import *
+import os
 
 def cosmosClient():
 
+    load_dotenv()
     config = loadConfigurations()
 
     # Initialize the Cosmos client
-    # Need to secure the below endpoint and key!
     endpoint = config['db']['cosmos']['endpoint']
-    key = key
-    #key = getKey('cosmosDbKey')
+    key = os.environ.get('cosmosDbKey')
 
     client = CosmosClient(endpoint, key)
 
-    # May want to place this somewhere else as well! 
     database_name = config['db']['cosmos']['databaseName']
     container_name = config['db']['cosmos']['containerName']
 

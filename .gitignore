@@ -253,3 +253,6 @@ paket-files/
 
 # Pycache
 **/__pycache__
+
+# PYTHON DOT ENV
+.env

@@ -11,6 +11,6 @@ db:
 
 sendGrid:
   from_email:
-    'bbarryyim@gmail.com'
+    'yimpact123@gmail.com'
   to_emails:
     'yimpact123@gmail.com'
