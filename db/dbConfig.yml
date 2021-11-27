@@ -1,0 +1,10 @@
+db:
+  cosmos:
+    endpoint:
+      'https://barry-azure-cosmo-account.documents.azure.com:443/'
+    databaseName:
+      'databaseAzure'
+    containerName:
+      'container3'
+    partitionKey:
+      '/ipAddress'

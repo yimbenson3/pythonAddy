@@ -9,38 +9,51 @@ def jsonItem():
     item['id'] = str(id)
     return item
 
-def visitorFirstTime():
+def differentBrowser(item):
     ipAddress = getIpAddress()
-    if len(queryIpAddress(ipAddress)) == 0:
-        return True
+    browserInfo = getUserAgent()
+    readItem = readItemFromCosmos(item[0])
+    if str(readItem['browserInfo']) != browserInfo :
+        return readItem
     else:
-        return False
+        return None
 
 def pythonAddy():
     ipAddress = getIpAddress()
     currentTimeStamp = getCurrentTimestamp()
     browserInfo = getUserAgent()
 
-    if visitorFirstTime() == True:
+    item = queryUniqueFromId("ipAddress", ipAddress)
+    
+    if len(item) == 0:
         item = jsonItem()
         item['ipAddress'] = ipAddress
         item['firstVisit'] = currentTimeStamp
         item['lastVisit'] = currentTimeStamp
         item['counter'] = 1
         item['browserInfo'] = browserInfo
-        # Add item into CosmosDB
         addItemIntoCosmos(item)
 
-        return "Welcome, IP: " + ipAddress + ", Time of visit: " + currentTimeStamp + ", Browser: " + browserInfo
-
-    else:
-        item = queryIpAddress(getIpAddress())
-        readItem = readItemFromCosmos(item[0])
+        return "Welcome, IP: " + ipAddress + ", You first visit!, Browser: " + browserInfo
+        #return item
+    
+    elif differentBrowser(item) != None :
+        readItem = differentBrowser(item)
         firstVisitTime = readItem['firstVisit']
         readItem['lastVisit'] = currentTimeStamp
         readItem['counter'] = readItem['counter'] + 1
         readItem['browserInfo'] = browserInfo
-        # Replace item in CosmosDB
+        replaceItemInCosmos(readItem)
+
+        return "Hello again, IP: " + ipAddress + ", Visit Count: " + str(readItem['counter']) + ", Your are visiting from different Browswer than last, Browser: " + browserInfo
+        #return readItem
+
+    else:
+        readItem = readItemFromCosmos(item[0])
+        firstVisitTime = readItem['firstVisit']
+        readItem['lastVisit'] = currentTimeStamp
+        readItem['counter'] = readItem['counter'] + 1
         replaceItemInCosmos(readItem)
 
         return "Hello again, IP: " + ipAddress + ", Visit Count: " + str(readItem['counter']) + ", Browser: " + browserInfo
+        #return readItem
