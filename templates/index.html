@@ -1,39 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/style.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style.css') }}" />
     <title>Whos visiting?</title>
 </head>
+
 <body>
     <h1>Who is visiting?</h1>
     <h2>{{ item['ipAddress'] }}</h2>
     <h3>Virtual Machine: <span class="ip_color">{{ hostname }}</span></h3>
     <p id="nonUniqueVisit">Your first visit! Welcome :) </br></p>
-    <p>     
+    <p>
         <span id="ipAddress"></span> </br>
         This is your visit count: <span id="counter"></span> </br>
         Browser Info: <span id="browserInfo"></span> </br>
     </p>
     <p id="nonUniqueVisitDiffBrowser"></p></br>
+    <script type="text/javascript" src="{{url_for('static', filename='main.js') }}"></script>
     <script>
-        function createCookie(name,value,days) {
-            if (days) {
-                var date = new Date();
-                date.setTime(date.getTime()+(days*24*60*60*1000));
-                var expires = "; expires="+date.toGMTString();
-            }
-            else var expires = "";
-            document.cookie = name+"="+value+expires+"; path=/";
-        }
-
-        function getCookie(name) {
-            const value = `; ${document.cookie}`;
-            const parts = value.split(`; ${name}=`);
-            if (parts.length === 2) return parts.pop().split(';').shift();
-            else return null
-        }
-
         var obj = JSON.parse('{{ item | tojson | safe}}');
         document.getElementById('ipAddress').innerHTML = obj.ipAddress;
         document.getElementById('counter').innerHTML = obj.counter;
@@ -48,9 +34,9 @@
         else {
             var cookieValue = Number(getCookie('visitCount'))
             cookieVaule = cookieValue++
-            console.log(cookieValue)
             createCookie('visitCount', cookieValue, '')
         }
     </script>
 </body>
+
 </html>

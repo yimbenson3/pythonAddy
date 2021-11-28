@@ -11,7 +11,7 @@ def jsonItem():
 def main():
     ipAddress = getIpAddress()
     currentTimeStamp = getCurrentTimestamp()
-    browserInfo = getUserAgent()
+    browserInfo = getBrowserInfo()
 
     item = queryUniqueFromId("ipAddress", ipAddress)
     

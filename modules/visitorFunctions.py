@@ -1,5 +1,7 @@
 from flask import request
 from datetime import datetime, timezone
+from user_agents import parse
+
 import os
 import socket
 
@@ -23,6 +25,16 @@ def getUserAgent():
         return userAgent
     except KeyError:
         return "None"
+
+def getBrowserInfo():
+    userAgent = getUserAgent()
+    if userAgent is not None:
+        user_agent = parse(userAgent)
+        browserInfo = user_agent.browser.family + ' ' + user_agent.browser.version_string
+        return browserInfo
+    else:
+        return None
+
 
 def getCurrentTimestamp():
     return str(datetime.now(timezone.utc))
