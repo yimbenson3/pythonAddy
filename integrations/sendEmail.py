@@ -22,6 +22,6 @@ def emailSendGrid(data):
     try:
         sg = SendGridAPIClient(os.environ.get('sendGridApiKey'))
         response = sg.send(message)
-        logging.info('Sending Email to: ' + str(config['sendGrid']['to_emails']) + '|| Status: '+str(response.status_code))
+        logging.info('Sending Email to: ' + str(config['sendGrid']['to_emails']) + ' || Status: '+str(response.status_code))
     except Exception as e:
         logging.error(e.message)

@@ -32,9 +32,9 @@ def queryUniqueFromId(id_name, id):
 
 def readItemFromCosmos(item):
     read_item = container.read_item(item=item['id'], partition_key=item['ipAddress'])
-    logging.info('Found Item\'s Id is {0}'.format(item['id']))
+    logging.info('Found Item, Id is {0}'.format(item['id']))
     return read_item
 
 def replaceItemInCosmos(item):
     response = container.replace_item(item=item, body=item)
-    logging.info('Replaced Item\'s Id is {0}'.format(response['id']))
+    logging.info('Replaced Item, Id is {0}'.format(response['id']))

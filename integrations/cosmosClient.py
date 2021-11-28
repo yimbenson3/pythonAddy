@@ -1,4 +1,4 @@
-from azure.cosmos import exceptions, CosmosClient, PartitionKey
+from azure.cosmos import CosmosClient, PartitionKey
 from dotenv import load_dotenv
 from config.loadConfig import *
 import os
