@@ -8,15 +8,38 @@ The webpage also shows the virtual machine serving the requests.
 
 ![pythonAddy](https://raw.githubusercontent.com/bbarryyim/pythonAddy/main/pythonAddy.png)
 
+To try : http://52.237.49.198
+
 ## How to run locally
 
-Clone this repository 
+1) Clone this repository
+2) Create Azure Cosmos Database (We will need the database endpoint database name, container name, and partitionKey)
+3) Create SendGrid Account (We will need the Sender Email Address registered)
+4) Fill in your configurations (Refer to config/sampleConfig.yml)
+4) Amend the following :
 
+ ```python
+def loadConfigurations():
+    os.chdir('[PATH_TO_YOUR_CONFIG_FILE')
+    with open("[CONFIG_FILE_IN_YML]","r") as file:
+```
+5) Inside your root folder, create a file named “.env.” Add the your Azure Cosmos Secret Key and Send Grid API Key inside the file
+
+```sh
+$ cd pythonAddy
+$ vi .env
+cosmosDbKey = [YOUR COSMOS DB KEY]
+sendGridApiKey = [YOU SEND GRID API KEY]
+```
+
+6) Run the following 
 ```sh
 $ cd pythonAddy
 $ chmod +x dockerRun.sh
 $ ./dockerRun.sh
 ```
 
-Open your browser and enter localhost to view the webpage
+Open your browser and enter localhost to view the webpage :) 
+
+
 

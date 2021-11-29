@@ -8,15 +8,15 @@ data:
     db:
       cosmos:
         endpoint:
-          'https://barry-azure-cosmo-account.documents.azure.com:443/'
+          ''
         databaseName:
-          'databaseAzure'
+          ''
         containerName:
-          'container3'
+          ''
         partitionKey:
-          '/ipAddress'
+          ''
     sendGrid:
       from_email:
-        'yimpact123@gmail.com'
+        ''
       to_emails:
-        'yimpact123@gmail.com'
+        ''

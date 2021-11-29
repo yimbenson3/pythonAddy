@@ -1,0 +1,15 @@
+db:
+  cosmos:
+    endpoint:
+      ''
+    databaseName:
+      ''
+    containerName:
+      ''
+    partitionKey:
+      ''
+sendGrid:
+  from_email:
+    ''
+  to_emails:
+    ''
