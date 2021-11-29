@@ -4,7 +4,7 @@ metadata:
   name: python-addy
   namespace: barryns
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: python-addy
@@ -17,7 +17,7 @@ spec:
         "kubernetes.io/os": linux
       containers:
       - name: python-addy
-        image: barrycontainerregistry.azurecr.io/python-addy:v1.0.0
+        image: barrycontainerregistry.azurecr.io/python-addy:v1.2.0
         volumeMounts:
           - name: python-addy-configmap-volume
             mountPath: /etc/config
@@ -33,7 +33,7 @@ spec:
             memory: 256Mi
         ports:
           - name: web
-            containerPort: 3000
+            containerPort: 80
             protocol: TCP
       volumes:
         - name: python-addy-configmap-volume
