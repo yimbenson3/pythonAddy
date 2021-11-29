@@ -8,8 +8,6 @@ The webpage also shows the virtual machine serving the requests.
 
 ![pythonAddy](https://raw.githubusercontent.com/bbarryyim/pythonAddy/main/pythonAddy.png)
 
-To try : http://52.237.49.198
-
 ## How to run locally
 
 1) Clone this repository
