@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-addy
+  namespace: barryns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: python-addy
+  template:
+    metadata:
+      labels:
+        app: python-addy
+    spec:
+      nodeSelector:
+        "kubernetes.io/os": linux
+      containers:
+      - name: python-addy
+        image: barrycontainerregistry.azurecr.io/python-addy:v1.0.0
+        volumeMounts:
+          - name: python-addy-configmap-volume
+            mountPath: /etc/config
+        env:
+        - name: ALLOW_EMPTY_PASSWORD
+          value: "yes"
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 250m
+            memory: 256Mi
+        ports:
+          - name: web
+            containerPort: 3000
+            protocol: TCP
+      volumes:
+        - name: python-addy-configmap-volume
+          configMap:
+            name: python-addy-configmap
+
