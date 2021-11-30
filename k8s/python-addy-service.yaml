@@ -1,15 +1,31 @@
-kind: Service
+---
 apiVersion: v1
+kind: Service
 metadata:
-  name: python-addy
+  name: python-addy-svc
   namespace: barryns
 spec:
-  externalTrafficPolicy: Local
-  type: LoadBalancer
+  type: ClusterIP
+  ports:
+  - port: 80
   selector:
     app: python-addy
-  ports:
-    - name: http
-      protocol: TCP
-      port: 80
-      targetPort: web
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: python-addy-agic-ig
+  namespace: barryns
+  annotations:
+    kubernetes.io/ingress.class: azure/application-gateway
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: python-addy-svc
+            port:
+              number: 80

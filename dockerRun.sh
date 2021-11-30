@@ -17,6 +17,5 @@ docker build -t ${IMAGE_NAME} -f Docker/Dockerfile .
 
 echo "****** Run Docker container of the image in detatched mode: ${IMAGE_NAME} with name ${CONTAINER_NAME} ******"
 docker run --rm -i -p ${PORT}:${PORT} \
-    -e HOST_HOSTNAME=`hostname` \
     --name ${CONTAINER_NAME} \
     ${IMAGE_NAME}

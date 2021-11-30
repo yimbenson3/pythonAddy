@@ -17,7 +17,7 @@ spec:
         "kubernetes.io/os": linux
       containers:
       - name: python-addy
-        image: barrycontainerregistry.azurecr.io/python-addy:v1.2.0
+        image: barrycontainerregistry.azurecr.io/python-addy:v1.4.0
         volumeMounts:
           - name: python-addy-configmap-volume
             mountPath: /etc/config

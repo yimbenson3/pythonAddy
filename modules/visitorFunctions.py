@@ -1,23 +1,19 @@
 from flask import request
 from datetime import datetime, timezone
 from user_agents import parse
-
-import os
 import socket
 
 def getHostname():
-    if 'HOST_HOSTNAME' in os.environ:
-        host_hostname = os.environ.get('HOST_HOSTNAME')
-        return host_hostname
-    else:
-        return socket.gethostname()
+    return socket.gethostname()
 
 def getIpAddress():
-    if request.environ.get('HTTP_X_FORWARDED_FOR') is None:
+    xForwaredForIP = request.environ.get('HTTP_X_FORWARDED_FOR')
+    if xForwaredForIP is None:
         return request.environ['REMOTE_ADDR']
     # If behind a proxy
     else:
-        return request.environ['HTTP_X_FORWARDED_FOR']
+        ipAddressNoPorts = xForwaredForIP.split(":", 1)
+        return ipAddressNoPorts[0]
 
 def getUserAgent():
     try:
@@ -34,7 +30,6 @@ def getBrowserInfo():
         return browserInfo
     else:
         return None
-
 
 def getCurrentTimestamp():
     return str(datetime.now(timezone.utc))
